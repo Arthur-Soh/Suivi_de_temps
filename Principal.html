@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Suivi des temps</title>
+
+    <link
+        rel="stylesheet"
+        href="css/design.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- ========================= -->
+    <!-- EN-TÊTE                   -->
+    <!-- ========================= -->
+
+    <header class="header">
+
+        <div>
+
+            <h1>Suivi des temps</h1>
+
+            <p id="welcomeMessage"></p>
+
+        </div>
+
+        <button
+            id="logoutButton"
+            type="button"
+        >
+            Se déconnecter
+        </button>
+
+    </header>
+
+
+    <!-- ========================= -->
+    <!-- CONTENU PRINCIPAL         -->
+    <!-- ========================= -->
+
+    <main class="dashboard">
+
+        <!-- SAISIE D'UNE ACTIVITÉ -->
+
+        <section class="card">
+
+            <h2>Enregistrer une activité</h2>
+
+            <form id="activityForm">
+
+                <div class="form-group">
+
+                    <label for="week">
+                        Semaine
+                    </label>
+
+                    <input
+                        type="week"
+                        id="week"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="project">
+                        Projet
+                    </label>
+
+                    <select
+                        id="project"
+                        required
+                    >
+
+                        <option value="">
+                            Sélectionner un projet
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phase">
+                        Phase / Activité
+                    </label>
+
+                    <select
+                        id="phase"
+                        required
+                    >
+
+                        <option value="">
+                            Sélectionner une phase
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="duration">
+                        Temps passé (heures)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="duration"
+                        min="0"
+                        step="0.25"
+                        placeholder="Ex : 2.5"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit">
+                    Enregistrer l'activité
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- HISTORIQUE                 -->
+        <!-- ========================= -->
+
+        <section class="card">
+
+            <div class="section-header">
+
+                <h2>
+                    Mes activités
+                </h2>
+
+                <div class="history-actions">
+
+                    <div class="total-hours">
+
+                        Total :
+
+                        <strong id="totalHours">
+                            0
+                        </strong>
+
+                        h
+
+                    </div>
+
+
+                    <button
+                        id="exportExcelButton"
+                        class="export-button"
+                        type="button"
+                    >
+                        📥 Exporter en Excel
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Semaine</th>
+
+                            <th>Projet</th>
+
+                            <th>Phase</th>
+
+                            <th>Temps</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="activitiesTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Bibliothèque permettant de créer le fichier Excel -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"
+    ></script>
+
+
+    <!-- Notre JavaScript -->
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

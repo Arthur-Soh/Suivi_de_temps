@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Suivi des temps - Connexion</title>
+
+    <link rel="stylesheet" href="css/design.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <h1>Suivi des temps</h1>
+
+        <p>Connectez-vous pour accéder à votre espace.</p>
+
+        <form id="loginForm">
+
+            <label for="username">Identifiant</label>
+            <input
+                type="text"
+                id="username"
+                placeholder="ex:PaulB"
+                required
+            >
+
+            <label for="password">Mot de passe</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="ex: eclipse"
+                required
+            >
+
+            <button type="submit">
+                Se connecter
+            </button>
+
+            <p id="loginError"></p>
+
+        </form>
+
+    </div>
+
+    <script src="js/login.js"></script>
+
+</body>
+</html>
