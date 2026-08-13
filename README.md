@@ -1,53 +1,61 @@
-Suivi des temps — Guide d'utilisation
+# Suivi des temps
 
-Application pour enregistrer et suivre le temps passé sur différents projets, semaine par semaine.
+Application web simple permettant à un utilisateur de se connecter et d'enregistrer le temps passé sur différents projets et phases, semaine par semaine.
 
-1. Se connecter
+## Fonctionnement général
 
-Ouvre le site, puis entre ton identifiant et ton mot de passe dans le formulaire de connexion.
+1. **Connexion** (`index.html`) : l'utilisateur entre un identifiant et un mot de passe. Les comptes sont codés en dur dans `js/login.js`.
+2. Une fois connecté, il arrive sur le **tableau de bord** (`Principal.html`) où il peut :
+   - choisir une semaine, un projet, une phase, et saisir un nombre d'heures, puis cliquer sur "Enregistrer l'activité" ;
+   - consulter la liste de toutes les activités déjà saisies, avec le total d'heures ;
+   - **rechercher** une activité en tapant le nom d'un projet dans le champ de recherche : le tableau se filtre automatiquement ;
+   - **exporter** ses activités dans un fichier Excel (.xlsx) via le bouton d'export ;
+   - supprimer une activité ;
+   - se déconnecter.
 
-Comptes disponibles :
+Chaque utilisateur ne voit que ses propres activités : les données sont stockées séparément pour chaque compte.
 
-Identifiant/	Mot de passe
----------------------------
-PaulB	     /eclipse
----------------------------
-MarcW	     / eclipse
----------------------------
+## Comptes de démonstration
 
-Clique sur "Se connecter". Si les identifiants sont corrects, tu arrives sur ton tableau de bord.
+| Identifiant | Mot de passe |
+|---|---|
+| PaulB |eclipse |
+| MarcW | eclipse|
 
-2. Enregistrer une activité
+## Projets et phases (codés en dur)
 
-En haut de la page, remplis le formulaire :
+- **Projet Paris** : Analyse, Développement, Tests, Réunion
+- **Projet Sartrouville** : Conception, Développement, Tests, Documentation
+- **Projet 1001VH** : Maintenance, Correction, Support
 
-Semaine : clique sur le champ et choisis la semaine concernée.
-Projet : choisis un projet dans la liste déroulante.
-Phase  : une fois le projet choisi, la liste des phases correspondantes apparaît, sélectionnes-en une.
-Temps passé (heures) : indique le nombre d'heures (par exemple 2.5 pour 2h30).
+Ces listes sont modifiables dans `js/app.js` (objet `projects`).
 
-Clique sur "Enregistrer l'activité". La ligne apparaît immédiatement dans le tableau juste en dessous, et le total d'heures se met à jour.
+## Stockage des données
 
-3. Consulter ses activités
+Il n'y a pas de base de données ni de serveur : l'application est 100% statique et tourne entièrement dans le navigateur. Les activités saisies sont sauvegardées dans le `localStorage` du navigateur, séparément pour chaque utilisateur (`activities_PaulB`, `activities_MarcW`, etc.).
 
-Toutes les activités que tu as déjà enregistrées s'affichent dans le tableau du bas, avec pour chacune : la semaine, le projet, la phase et le nombre d'heures. Le total de toutes tes heures est affiché en haut de ce tableau.
+⚠️ Les données restent propres à chaque navigateur/ordinateur : elles ne sont pas partagées entre plusieurs appareils. L'export Excel permet de conserver ou transférer une copie des données saisies.
 
-4. Rechercher un projet
+## Structure du projet
 
-Juste au-dessus du tableau, un champ "Rechercher un projet" te permet de filtrer l'affichage. Tape tout ou une partie du nom d'un projet (par exemple "Paris") : seules les activités de ce projet restent affichées. Efface le champ pour revoir toutes les activités.
+```
+├── index.html          → page de connexion
+├── Principal.html       → tableau de bord (saisie + consultation)
+├── css/
+│   └── design.css       → mise en forme du site
+└── js/
+    ├── login.js          → vérification des identifiants
+    └── app.js            → logique du tableau de bord (saisie, recherche, export, suppression)
+```
 
-5. Exporter en Excel
+## Technologies utilisées
 
-Clique sur le bouton "Exporter en Excel" pour télécharger un fichier .xlsx contenant toutes tes activités et le total d'heures. Le fichier est enregistré dans le dossier de téléchargements de ton navigateur.
+- HTML5 / CSS3
+- JavaScript (aucun framework)
+- [SheetJS (xlsx)](https://sheetjs.com/) pour l'export Excel
+- Hébergement : GitHub Pages
 
-6. Supprimer une activité
+## Accès en ligne
 
-Sur la ligne de l'activité à retirer, clique sur le bouton "Supprimer". Elle disparaît immédiatement du tableau et le total se recalcule.
-
-7. Se déconnecter
-
-Clique sur "Se déconnecter" en haut à droite de la page. Tu es renvoyé à l'écran de connexion. Tes données restent enregistrées : elles seront là à ta prochaine connexion avec le même compte, sur le même navigateur.
-
-À savoir
-Chaque personne ne voit que ses propres activités.
-Les données sont conservées dans le navigateur utilisé : si tu changes d'ordinateur ou de navigateur, tu ne retrouveras pas tes activités précédentes (pense à exporter en Excel si tu veux en garder une trace).
+- URL : *[SiteWeb](https://arthur-soh.github.io/Suivi_de_temps/)*
+- Temps passé sur le développement : *4h (1h de pause pour admirer l'éclipse et me reposer)*
